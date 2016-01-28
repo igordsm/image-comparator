@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    
+<html>
+    <head>
+        <title>Image Comparator</title>
+        
+        <link rel="stylesheet"  href="main.css">
+        <script type="text/javascript" src="js/data.js"></script>
+        <script type="text/javascript" src="js/ui.js"></script>
+
+        <script type="text/javascript" src="js/zoom.js"></script>
+        <script type="application/x-javascript" src="js/help.js"></script>        
+    </head>
+    
+    <body>
+        <header>
+            <img src="images/help.png" id="help-icon" style="float:right; cursor: pointer;">
+            <h1 id="title"> ####TITLE#### </h1>
+            <span class="first-col">
+            </span><span class="second-col">Method 1: <select id="methods-left"></select>
+            </span><span class="">Method 2: <select id="methods-right"></select></span>
+            </div>
+        </header>
+        
+        <div class="image-select-panel first-col">
+            <div id="image-select-title">Select an image:</div>
+            <div id="image-list"></div>
+        </div><img id="img-left" class="second-col zoomable" src=""><img id="img-right" class="third-col zoomable" src="">
+        <canvas id="zoom-left" width="300" height="300" class="zoom zoomable"></canvas>
+        <canvas id="zoom-right" width="300" height="300" class="zoom zoomable"></canvas>
+        
+        <div id="help-dialog" class="dialog">
+            <div class="dialog-content">
+                <img id="close-button" src="images/close.jpg">
+                <h2>Help</h2>
+                To compare a method with the input images, choose the "Original" item available at both lists.<br>
+                <br>
+                Hold the mouse down to activate the zoom and see the images in more detail.<br>
+                <br><br>
+                
+            </div>
+        </div>
+    </body>
+</html>

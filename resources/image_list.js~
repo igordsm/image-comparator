@@ -1,0 +1,80 @@
+            function add_option(el, opt_text, opt_value) {
+                opt = document.createElement('option');
+                opt.text = opt_text;
+                opt.value = opt_value;
+                
+                el.add(opt, null);
+            }
+            
+            function get_selected(id) {
+                var select = document.getElementById(id);
+                return select.item(select.selectedIndex).value;
+            }
+            
+            function show_image(evt) {
+                var left_dataset = left[get_selected('methods-left')];
+                var right_dataset = right[get_selected('methods-right')];
+                
+                var img = evt.target.innerHTML;
+                
+                var img_left = document.getElementById('img-left');
+                img_left.src = left_dataset.prefix + "/" + evt.target.innerHTML;
+                var img_right = document.getElementById('img-right');
+                img_right.src = right_dataset.prefix + "/" + evt.target.innerHTML;
+                
+                var image_list = document.getElementById('image-list');
+                for (var i = 0; i < image_list.children.length; i++) {
+                    var c = image_list.children[i];
+                    c.classList.remove('selected');
+                }
+                evt.target.classList.add('selected');
+            }
+            
+            function load_image_list() {
+                /* called when the left side method is changed */
+                var image_list = document.getElementById('image-list');
+                image_list.innerHTML = '';
+                
+                var selected_left = get_selected('methods-left');
+                var selected_right = get_selected('methods-right');
+                
+                var images_left = left[selected_left].images;
+                var images_right = right[selected_right].images;
+                
+                for (var i = 0; i < images_left.length; i++) {
+                    var img = images_left[i];
+                    if (images_right.indexOf(img) != -1) {
+                        var el = document.createElement('div');
+                        el.innerHTML = img;
+                        el.addEventListener('click', show_image);
+                        el.classList.add('image-select-item')
+                        image_list.appendChild(el);
+                    }
+                }
+                
+                show_image({target:image_list.firstChild});
+            }
+            
+            function load() {
+                /* load content */
+                var methods_left = document.getElementById('methods-left');
+                methods_left.addEventListener('change', function() {
+                    load_image_list();
+                });
+                var methods_right = document.getElementById('methods-right');
+                methods_right.addEventListener('change', function() {
+                    load_image_list();
+                });
+                
+                for (k in left) {
+                    add_option(methods_left, k, k);
+                }
+                
+                for (k in right) {
+                    add_option(methods_right, k, k);
+                }
+                
+                load_image_list();
+            }
+                
+            document.addEventListener("DOMContentLoaded", load);
