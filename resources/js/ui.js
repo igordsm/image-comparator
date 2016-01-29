@@ -71,6 +71,8 @@ function load() {
         add_option(methods_right, names[k], folders[k]);
     }
     method_changed();
+    methods_left.selectedIndex = 0;
+    methods_right.selectedIndex = 1;
 }
     
 document.addEventListener("DOMContentLoaded", load);
