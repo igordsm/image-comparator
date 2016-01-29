@@ -67,8 +67,8 @@ function load() {
     });
     create_image_list();
     for (k in folders) {
-        add_option(methods_left, folders[k], folders[k]);
-        add_option(methods_right, folders[k], folders[k]);
+        add_option(methods_left, names[k], folders[k]);
+        add_option(methods_right, names[k], folders[k]);
     }
     method_changed();
 }
